@@ -7,6 +7,7 @@ package "freeglut3"
 package "freeglut3-dev"
 package "avrdude"
 package "picocom"
+package "xterm"
 package "git"
 
 magic_shell_environment 'SIMAVR_UART_XTERM' do
