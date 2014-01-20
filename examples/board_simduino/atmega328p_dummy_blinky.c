@@ -1,22 +1,22 @@
 /*
-	atmega328p_dummy_blinky.c
+  atmega328p_dummy_blinky.c
 
-	Copyright 2008, 2009 Michel Pollet <buserror@gmail.com>
+  Copyright 2008, 2009 Michel Pollet <buserror@gmail.com>
 
- 	This file is part of simavr.
+  This file is part of simavr.
 
-	simavr is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+  simavr is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-	simavr is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+  simavr is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with simavr.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with simavr.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -52,14 +52,18 @@ static FILE mystdout = FDEV_SETUP_STREAM(uart_putchar, NULL,
                                          _FDEV_SETUP_WRITE);
 
 
-int main()
-{
-	stdout = &mystdout;
+int main() {
+  int i = 0;
+  stdout = &mystdout;
 
-	printf("Bootloader properly programmed, and ran me! Huzzah!\n");
+  printf("Bootloader properly programmed, and ran me! Huzzah!\n");
 
-	// this quits the simulator, since interrupts are off
-	// this is a "feature" that allows running tests cases and exit
-	sleep_cpu();
+  for (i = 0; i < 10; i++) {
+    printf("Pete is cool!\n");
+  }
+
+  // this quits the simulator, since interrupts are off
+  // this is a "feature" that allows running tests cases and exit
+  sleep_cpu();
 }
 
