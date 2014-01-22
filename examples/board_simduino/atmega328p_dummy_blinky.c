@@ -51,6 +51,7 @@ static int uart_putchar(char c, FILE *stream) {
 static FILE mystdout = FDEV_SETUP_STREAM(uart_putchar, NULL,
                                          _FDEV_SETUP_WRITE);
 
+#include "test.h"
 
 int main() {
   int i = 0;
@@ -61,6 +62,8 @@ int main() {
   for (i = 0; i < 10; i++) {
     printf("Pete is cool!\n");
   }
+
+  test_hello();
 
   // this quits the simulator, since interrupts are off
   // this is a "feature" that allows running tests cases and exit

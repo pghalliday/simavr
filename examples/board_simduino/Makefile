@@ -18,6 +18,7 @@
 
 target=	simduino
 firm_src = ${wildcard atmega*.c}
+firm_axf = ${firm_src:.c=.axf}
 firmware = ${firm_src:.c=.hex}
 simavr = ../../
 
@@ -42,6 +43,9 @@ board = ${OBJ}/${target}.elf
 ${board} : ${OBJ}/button.o
 ${board} : ${OBJ}/uart_pty.o
 ${board} : ${OBJ}/${target}.o
+
+${firm_axf} : test.c
+${firm_axf} : test.h
 
 ${target}: ${board}
 	@echo $@ done
