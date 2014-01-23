@@ -1,8 +1,8 @@
 #include "test.h"
-#include <stdio.h>
-#include <string.h>
 #include "cspec.h"
 #include "cspec_output_verbose.h"
+
+#include <string.h>
 
 DESCRIBE(strcmp, "int strcmp ( const char * str1, const char * str2 )")
 
