@@ -22,13 +22,33 @@ firm_axf = ${firm_src:.c=.axf}
 firmware = ${firm_src:.c=.hex}
 simavr = ../../
 
+src = ./src
+inc = ./inc
+src_files = ${notdir ${wildcard ${src}/*.c}}
+inc_files = ${notdir ${wildcard ${inc}/*.h}}
+
+cspec = ./cspec
+cspec_src = ${cspec}/src
+cspec_inc = ${cspec}/inc
+cspec_src_files = ${notdir ${wildcard ${cspec_src}/*.c}}
+cspec_inc_files = ${notdir ${wildcard ${cspec_inc}/*.h}}
+
+test = ./test
+test_src = ${test}/src
+test_inc = ${test}/inc
+test_src_files = ${notdir ${wildcard ${test_src}/*.c}}
+test_inc_files = ${notdir ${wildcard ${test_inc}/*.h}}
+
 IPATH = .
 IPATH += ../parts
 IPATH += ${simavr}/include
 IPATH += ${simavr}/simavr/sim
 
+AXF_INCLUDES = -I${inc} -I${cspec_inc} -I${test_inc}
+
 VPATH = .
 VPATH += ../parts
+VPATH += ${src} ${inc} ${cspec_src} ${cspec_inc} ${test_src} ${test_inc}
 
 LDFLAGS += -lpthread -lutil
 
@@ -44,8 +64,7 @@ ${board} : ${OBJ}/button.o
 ${board} : ${OBJ}/uart_pty.o
 ${board} : ${OBJ}/${target}.o
 
-${firm_axf} : test.c
-${firm_axf} : test.h
+${firm_axf} : ${src_files} ${inc_files} ${cspec_src_files} ${cspec_inc_files} ${test_src_files} ${test_inc_files}
 
 ${target}: ${board}
 	@echo $@ done

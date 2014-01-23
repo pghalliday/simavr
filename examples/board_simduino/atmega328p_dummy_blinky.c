@@ -63,7 +63,7 @@ int main() {
     printf("Pete is cool!\n");
   }
 
-  test_hello();
+  test_run();
 
   // this quits the simulator, since interrupts are off
   // this is a "feature" that allows running tests cases and exit
